@@ -14,4 +14,6 @@ public abstract class Obstacle : ScriptableObject
     public abstract ObstacleType Type { get; }
     
     [SerializeField] private string m_Question;
+    
+    public abstract void AnswerQuestion(bool answer);
 }

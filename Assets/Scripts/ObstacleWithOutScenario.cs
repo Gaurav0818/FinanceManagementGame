@@ -13,4 +13,16 @@ public class ObstacleWithOutScenario : Obstacle
     
     [SerializeField] private int m_CurrencyCost;
     [SerializeField] private int m_SatisfactionCost;
+    
+    public override void AnswerQuestion(bool answer)
+    {
+        if (answer)
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
 }
