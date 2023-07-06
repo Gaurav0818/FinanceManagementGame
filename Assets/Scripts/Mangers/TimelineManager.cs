@@ -41,13 +41,13 @@ public class TimelineManager : Singleton<TimelineManager>
     private void Awake()
     {
         if(gameMode == GameMode.WeekBased)
-            InitaizeDays(7);
+            InitializeDays(7);
         else
-            InitaizeDays(30);
+            InitializeDays(30);
     }
 
     
-    private void InitaizeDays(int dayCount)
+    private void InitializeDays(int dayCount)
     {
         for (int i = 1; i <= dayCount; i++)
         {
