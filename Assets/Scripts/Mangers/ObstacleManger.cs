@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectiveManger : Singleton<ObjectiveManger>
+public class ObstacleManger : Singleton<ObstacleManger>
 {
-    
+
 }
