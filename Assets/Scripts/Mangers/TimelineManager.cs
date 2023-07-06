@@ -49,16 +49,16 @@ public class TimelineManager : Singleton<TimelineManager>
     
     private void InitializeDays(int dayCount)
     {
-        for (int i = 1; i <= dayCount; i++)
+        for (int i = 0; i < dayCount; i++)
         {
             DayEntry day = new DayEntry();
-            day.dayNumber = i;
+            day.dayNumber = i+1;
             
             // statement to find 7n or 7n -1 day of the week
-            // i % 7 will day of the week from 1 to 7
-            // 7 - i % 7 will be smaller then or equal to 1 for weekends and greater then 1 for weekdays 
-            
-            if(7 - i % 7 <= 1)
+            // i % 7 will give day of the week from 0 to 6
+            // 7 - i % 7 will be smaller then or equal to 2 for weekends and greater then 1 for weekdays 
+
+            if (7 - i % 7 <= 2)
                 day.typeOfDay = DayType.WeekEnd;
             else
                 day.typeOfDay = DayType.WeekDay;
@@ -66,4 +66,5 @@ public class TimelineManager : Singleton<TimelineManager>
             days.Add(day);
         }
     }
+    
 }
