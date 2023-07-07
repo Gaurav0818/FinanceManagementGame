@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,11 +11,26 @@ public class TimelineManager : Singleton<TimelineManager>
     public enum DayType
     {
         WeekDay,
-        WeekEnd
+        WeekEnd,
     }
     
     [System.Serializable]
-    public struct ScenarioData
+    public enum MandatoryScenarioDayType
+    {
+        WeekDay,
+        WeekEnd,
+        Both
+    }
+    
+    [System.Serializable]
+    public struct MandatoryScenario
+    {
+        public MandatoryScenarioDayType type;
+        public ScenarioData scenario;
+    }
+
+    [System.Serializable]
+     public struct ScenarioData
     {
         public Scenario scenario;
         public int StartTime;
@@ -37,6 +53,9 @@ public class TimelineManager : Singleton<TimelineManager>
     
     public GameMode gameMode;
     public List<DayEntry> days;
+    
+    
+    public List<MandatoryScenario> mandatoryScenario;
     
     private DayEntry m_CurrentDay;
     private int m_TimeInMin;
@@ -70,12 +89,16 @@ public class TimelineManager : Singleton<TimelineManager>
             else
                 day.typeOfDay = DayType.WeekDay;
             
+            day.scenarioList = AddMandatoryScenario(day.typeOfDay);
+            
             days.Add(day);
         }
         
         SetCurrentDay(days[0]);
+        
+        StartDay();
+        
         StartCoroutine(StartTimer());
-        StartCoroutine(StartDay());
     }
 
     private void SetCurrentDay(DayEntry day)
@@ -104,18 +127,17 @@ public class TimelineManager : Singleton<TimelineManager>
         yield return null;
     }
 
-    private IEnumerator StartDay()
+    private void StartDay()
     {
         m_TimeInMin = 0;
         m_TimeInHour = m_StartTimeOfDay;
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            if(m_TimeInHour >= m_EndTimeOfDay)
-                break;
-        }
-        StartNextDay();
-        yield return null;
+        
+        m_CurrentDay.scenarioList.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
+        
+        m_TimeInHour = m_CurrentDay.scenarioList[0].StartTime;
+        
+        ScenarioManger.Instance.StartScenario(m_CurrentDay.scenarioList[0]);
+        
     }
     
     private void StartNextDay()
@@ -124,24 +146,48 @@ public class TimelineManager : Singleton<TimelineManager>
         if (index + 1 < days.Count)
         {
             SetCurrentDay(days[index + 1]);
-            StartCoroutine(StartDay());
+            StartDay();
         }
     }
 
     public void SkipHour()
     {
         m_TimeInHour++;
-        HourChanged();
+        if(m_TimeInHour >= m_EndTimeOfDay)
+            StartNextDay();
+        else 
+            HourChanged();
     }
 
     private void HourChanged()
     {
         EventManager.TriggerHourIncreaseEvent();
+        
+        if(m_TimeInHour >= m_EndTimeOfDay)
+            StartNextDay();
     }
 
     public int GetCurrentTimeInHr()
     {
         return m_TimeInHour;
+    }
+
+    private List<ScenarioData> AddMandatoryScenario(DayType type)
+    {
+        List<ScenarioData> scenarioList = new List<ScenarioData>();
+        MandatoryScenarioDayType dayType;
+        if(type == DayType.WeekDay)
+            dayType = MandatoryScenarioDayType.WeekDay;
+        else
+            dayType = MandatoryScenarioDayType.WeekEnd;
+            
+        foreach (var scenario in mandatoryScenario)
+        {
+            if (scenario.type == MandatoryScenarioDayType.Both || scenario.type == dayType)
+                scenarioList.Add(scenario.scenario);
+        }
+
+        return scenarioList;
     }
     
 }

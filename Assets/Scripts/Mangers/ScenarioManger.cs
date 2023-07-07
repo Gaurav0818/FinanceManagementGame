@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class ScenarioManger : Singleton<ScenarioManger>
 {
     private TimelineManager.ScenarioData m_CurrentScenario;
+    private Obstacle m_CurrentObstacle;
 
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class ScenarioManger : Singleton<ScenarioManger>
     public void StartScenario(TimelineManager.ScenarioData scenario)
     {
         m_CurrentScenario = scenario;
+        m_CurrentObstacle = scenario.scenario.GetObstacle();    
     }
     
     public Scenario GetScenario()
@@ -42,4 +45,5 @@ public class ScenarioManger : Singleton<ScenarioManger>
         if( m_CurrentScenario.StartTime + m_CurrentScenario.scenario.GetDuration() >= TimelineManager.Instance.GetCurrentTimeInHr())
             StartNextScenario();
     }
+    
 }
