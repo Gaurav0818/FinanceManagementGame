@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class UiManager : Singleton<UiManager>
 {
+    [Header("Currency And Satisfaction score")] 
+    [SerializeField] private TextMeshProUGUI m_CurrencyAmountTextUI;
+    [SerializeField] private TextMeshProUGUI m_SatisfactionScoreTextUI;
+    [SerializeField] private FloatingIndicator m_FloatingIndicator;
     
     [Header("Day and Time")]
     [SerializeField] private TextMeshProUGUI m_ClockTextUI;
@@ -142,6 +146,8 @@ public class UiManager : Singleton<UiManager>
 
     public void RefreshSchedule()
     {
+        if (m_ScenarioDayPool == null)
+            return;
         m_ScenarioDayPool.RefreshPool();
         var defaultSize =  m_ScenarioListEntryPrefab.GetComponent<RectTransform>().sizeDelta;
         foreach (var scenario in TimelineManager.Instance.GetCurrentDay().scenarioList)
@@ -266,5 +272,25 @@ public class UiManager : Singleton<UiManager>
         CloseTimeSchedulePanel();
         RefreshSchedule();
         ObstacleManger.Instance.SelectedTimeSchedule(time);
+    }
+    
+    public void RefreshCurrencyAmount()
+    {
+        m_CurrencyAmountTextUI.text = "Currency :" + ScoreManger.Instance.GetCurrency().ToString();
+    }
+    
+    public void RefreshSatisfactionScore()
+    {
+        m_SatisfactionScoreTextUI.text = "SatisfactionScore :" + ScoreManger.Instance.GetSatisfactionScore().ToString();
+    }
+    
+    public void FloatingUIForCurrency(string text, Color color)
+    {
+        m_FloatingIndicator.ShowFloatingText(text, m_CurrencyAmountTextUI.transform.position,color);
+    }
+    
+    public void FloatingUIForSatisfactionScore(string text, Color color)
+    {
+        m_FloatingIndicator.ShowFloatingText(text, m_SatisfactionScoreTextUI.transform.position,color);
     }
 }

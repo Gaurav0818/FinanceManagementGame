@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManger : Singleton<ScoreManger>
 {
+
     #region CurrencyScore
     
     [Header("CurrencyScore")]
@@ -16,11 +18,15 @@ public class ScoreManger : Singleton<ScoreManger>
     public void AddCurrency(int score)
     {
         m_CurrencyAmount += score;
+        UiManager.Instance.RefreshCurrencyAmount();
+        UiManager.Instance.FloatingUIForCurrency(score.ToString(), Color.green);
     }
     
     public void DecreaseCurrency(int score)
     {
         m_CurrencyAmount -= score;
+        UiManager.Instance.RefreshCurrencyAmount();
+        UiManager.Instance.FloatingUIForCurrency(score.ToString(), Color.red);
     }
 
     #endregion
@@ -37,11 +43,16 @@ public class ScoreManger : Singleton<ScoreManger>
     public void AddSatisfactionScore(int score)
     {
         m_SatisfactionScore += score;
+        UiManager.Instance.RefreshSatisfactionScore();
+        UiManager.Instance.FloatingUIForSatisfactionScore(score.ToString(), Color.green);
+
     }
     
     public void DecreaseSatisfactionScore(int score)
     {
         m_SatisfactionScore -= score;
+        UiManager.Instance.RefreshSatisfactionScore();
+        UiManager.Instance.FloatingUIForSatisfactionScore(score.ToString(), Color.red);
     }
     
     #endregion

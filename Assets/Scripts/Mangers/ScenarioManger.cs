@@ -26,6 +26,7 @@ public class ScenarioManger : Singleton<ScenarioManger>
         ObstacleManger.Instance.SetCurrentObstacle(scenario.scenario.GetObstacle());    
         
         UiManager.Instance.SetScenarioImage();
+        UiManager.Instance.RefreshSchedule();
     }
     
     public Scenario GetCurrentScenario()
@@ -50,13 +51,18 @@ public class ScenarioManger : Singleton<ScenarioManger>
 
     private void HourIncreaseEvent()
     {
-        if (m_CurrentScenario.StartTime + m_CurrentScenario.scenario.GetDuration() >=
-            TimelineManager.Instance.GetCurrentTimeInHr())
+        if (m_CurrentScenario.StartTime + m_CurrentScenario.scenario.GetDuration() <= TimelineManager.Instance.GetCurrentTimeInHr())
         {
             //TimelineManager.Instance.MarkScenarioAsDone(m_CurrentScenario);
             StartNextScenario();
         }
+        else
+        {
+            m_CurrentScenario.scenario.GenerateRandomObstacle();
+        }
+        
     }
+    
     
 
 

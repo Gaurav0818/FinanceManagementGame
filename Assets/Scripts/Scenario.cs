@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 [CreateAssetMenu(fileName = "Scenario", menuName = "ScriptedData/Scenario")]
 public class Scenario : ScriptableObject
@@ -33,8 +32,12 @@ public class Scenario : ScriptableObject
         if(m_PossibleObstacles.Count == 0)
             return;
         
-        if (Random.Range(0, 100) < 100)
-            m_ScenaioObstacle =  m_PossibleObstacles[Random.Range(0, m_PossibleObstacles.Count)];
+        Random random = new Random();
+        Debug.Log(m_PossibleObstacles.Count);
+        Debug.Log( random.Next(0, m_PossibleObstacles.Count));
+        
+        if (random.Next(0, 100) < 70)
+            m_ScenaioObstacle =  m_PossibleObstacles[random.Next(0, m_PossibleObstacles.Count)];
         else
             m_ScenaioObstacle = null;
     }

@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1036aff16a0c8794ea29853fd27b022d, type: 3}
-  m_Name: InsideUniversity
+  m_Name: InsideMovie
   m_EditorClassIdentifier: 
-  m_ScenarioName: University
-  m_Duration: 4
+  m_ScenarioName: Movie
+  m_Duration: 2
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: cab6c22593f92404584eb6862ddd87f4, type: 2}
-  - {fileID: 11400000, guid: 37635891091bc7142b260c6c3db7e31a, type: 2}
-  - {fileID: 11400000, guid: fbf11ab3ceba51f47b8360fad96272b7, type: 2}
-  m_ScenarioImage: {fileID: 21300000, guid: 4b0fc2825f8f50e4d93732053b3c6aa6, type: 3}
+  - {fileID: 11400000, guid: f0b0c85de6a852d4c8f27c5d89071838, type: 2}
+  - {fileID: 11400000, guid: d3e378e1b4d18b948902c1e8317003e4, type: 2}
+  m_ScenarioImage: {fileID: 21300000, guid: 4355dccb994283940b26950ca2f6fb32, type: 3}

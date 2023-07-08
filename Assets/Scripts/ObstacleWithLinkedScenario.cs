@@ -21,7 +21,7 @@ public class ObstacleWithLinkedScenario : Obstacle
     
     [SerializeField] private Scenario m_LinkedScenario;
     [SerializeField] private TimelineManager.DayTypeInWhichScenarioCanBeUsed m_ScenarioType;
-    [SerializeField] private ScheduleType m_ScheduleType;
+    //[SerializeField] private ScheduleType m_ScheduleType;
 
     public TimelineManager.DayTypeInWhichScenarioCanBeUsed GetScenarioType()
     {
