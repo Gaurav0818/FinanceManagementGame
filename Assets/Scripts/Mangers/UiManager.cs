@@ -22,6 +22,12 @@ public class UiManager : Singleton<UiManager>
     [SerializeField] private GameObject m_ScenarioListEntryPrefab;
     private ObjectPool m_ScenarioDayPool;
     [SerializeField] private Image ScenarioImage;
+    
+    [Header("Obsatcle")]
+    [SerializeField] private GameObject m_ObstaclePanel;
+    [SerializeField] private TextMeshProUGUI m_QuestionText;
+    [SerializeField] private TextMeshProUGUI m_AnsTrueText;
+    [SerializeField] private TextMeshProUGUI m_AnsFalseText;
 
 
     private void Awake()
@@ -39,6 +45,31 @@ public class UiManager : Singleton<UiManager>
         FillDailySchedule();
         RefreshClock();
         RefreshDayIndicator();
+        
+        CloseObstacle();
+    }
+    
+    public void OpenObstacle(Obstacle obstacle)
+    {
+        m_QuestionText.text = obstacle.GetQuestion();
+        m_AnsTrueText.text = obstacle.GetAnsTrue();
+        m_AnsFalseText.text = obstacle.GetAnsFalse();
+        
+        m_ObstaclePanel.SetActive(true);
+    }
+    
+    public void CloseObstacle()
+    {
+        m_ObstaclePanel.SetActive(false);
+    }
+
+    public void AnsSelectedTrue()
+    {
+        ObstacleManger.Instance.TrueSelected();
+    }
+    public void AnsSelectedFalse()
+    {
+        ObstacleManger.Instance.FalseSelected();
     }
 
     private void FillCalender()

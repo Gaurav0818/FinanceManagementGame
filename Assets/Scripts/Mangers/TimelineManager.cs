@@ -119,6 +119,7 @@ public class TimelineManager : Singleton<TimelineManager>
             yield return new WaitForSeconds(m_MinInEachHr/60f);
             m_TimeInMin++;
             EventManager.TriggerMinuteIncreaseEvent();
+
             if (m_TimeInMin >= 60)
             {
                 m_TimeInMin = 0;
@@ -172,6 +173,11 @@ public class TimelineManager : Singleton<TimelineManager>
     public int GetCurrentTimeInHr()
     {
         return m_TimeInHour;
+    }
+    
+    public int GetCurrentTimeInMin()
+    {
+        return m_TimeInMin;
     }
 
     private List<ScenarioData> AddMandatoryScenario(DayType type)

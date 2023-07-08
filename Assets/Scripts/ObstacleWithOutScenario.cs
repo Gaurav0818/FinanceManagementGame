@@ -12,17 +12,21 @@ public class ObstacleWithOutScenario : Obstacle
     }
     
     [SerializeField] private int m_CurrencyCost;
-    [SerializeField] private int m_SatisfactionCost;
-    
+    [SerializeField] private int m_SatisfactionIncreaseBy;
+    [SerializeField] private int m_SatisfactionDecreaseBy;
+
     public override void AnswerQuestion(bool answer)
     {
         if (answer)
         {
-            
+            ScoreManger.Instance.DecreaseCurrency(m_CurrencyCost);
+            ScoreManger.Instance.AddSatisfactionScore(m_SatisfactionIncreaseBy);
         }
         else
         {
-            
+            ScoreManger.Instance.DecreaseSatisfactionScore(-m_SatisfactionIncreaseBy);
         }
+        
+        ObstacleManger.Instance.CloseObstacle();
     }
 }

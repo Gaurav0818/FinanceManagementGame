@@ -7,7 +7,7 @@ using UnityEngine;
 public class ScenarioManger : Singleton<ScenarioManger>
 {
     private TimelineManager.ScenarioData m_CurrentScenario;
-    private Obstacle m_CurrentObstacle;
+
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class ScenarioManger : Singleton<ScenarioManger>
     public void StartScenario(TimelineManager.ScenarioData scenario)
     {
         m_CurrentScenario = scenario;
-        m_CurrentObstacle = scenario.scenario.GetObstacle();    
+        ObstacleManger.Instance.SetCurrentObstacle(scenario.scenario.GetObstacle());    
         
         UiManager.Instance.SetScenarioImage();
     }
@@ -52,4 +52,6 @@ public class ScenarioManger : Singleton<ScenarioManger>
         }
     }
     
+
+
 }
