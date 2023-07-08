@@ -17,6 +17,11 @@ public abstract class Obstacle : ScriptableObject
     [SerializeField] private string m_AnswerTrue;
     [SerializeField] private string m_AnswerFalse;
     
+        
+    public int m_CurrencyCost;
+    public int m_SatisfactionIncreaseBy;
+    public int m_SatisfactionDecreaseBy;
+    
     public abstract void AnswerQuestion(bool answer);
     
     public string GetQuestion()
@@ -32,5 +37,16 @@ public abstract class Obstacle : ScriptableObject
     public string GetAnsFalse()
     {
         return m_AnswerFalse;
+    }
+    
+    protected void IfAnswerIsTrue()
+    {
+        ScoreManger.Instance.DecreaseCurrency(m_CurrencyCost);
+        ScoreManger.Instance.AddSatisfactionScore(m_SatisfactionIncreaseBy);
+    }
+    
+    protected void IfAnswerIsFalse()
+    {
+        ScoreManger.Instance.DecreaseSatisfactionScore(m_SatisfactionDecreaseBy);
     }
 }

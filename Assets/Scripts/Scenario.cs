@@ -9,19 +9,8 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "Scenario", menuName = "ScriptedData/Scenario")]
 public class Scenario : ScriptableObject
 {
-    [System.Serializable]
-    public enum ScenarioType
-    {
-        InsideHouse,
-        InsideUniversity,
-        InsideBus,
-        InsideCinema,
-        InsideRestaurant,
-        InsideShop
-    }
     
-
-    [SerializeField] private ScenarioType m_ScenarioType;
+    [SerializeField] private string m_ScenarioName;
     [SerializeField] private float m_Duration;
 
     [SerializeField] private List<Obstacle> m_PossibleObstacles;
@@ -29,9 +18,9 @@ public class Scenario : ScriptableObject
     
     private Obstacle m_ScenaioObstacle;
 
-    public ScenarioType GetScenarioType()
+    public string GetScenarioName()
     {
-        return m_ScenarioType;
+        return m_ScenarioName;
     }
     
     public float GetDuration()
@@ -39,7 +28,6 @@ public class Scenario : ScriptableObject
         return m_Duration;
     }
     
-
     public void GenerateRandomObstacle()
     {
         if (Random.Range(0, 100) < 100)

@@ -20,42 +20,26 @@ public class ObstacleWithLinkedScenario : Obstacle
     }
     
     [SerializeField] private Scenario m_LinkedScenario;
-    [SerializeField] private Scenario.ScenarioType m_ScenarioType;
+    [SerializeField] private TimelineManager.DayTypeInWhichScenarioCanBeUsed m_ScenarioType;
     [SerializeField] private ScheduleType m_ScheduleType;
 
+    public TimelineManager.DayTypeInWhichScenarioCanBeUsed GetScenarioType()
+    {
+        return m_ScenarioType;
+    }
+    
     public override void AnswerQuestion(bool answer)
     {
         if (answer)
         {
-            
+            ObstacleManger.Instance.NeedToScheduleScenario(m_LinkedScenario, m_ScenarioType);
+            IfAnswerIsTrue();
         }
         else
         {
-            
+            IfAnswerIsFalse();
+            ObstacleManger.Instance.CloseObstacle();
         }
     }
-    
-    private void IfAnswerIsTrue()
-    {
-        if (m_ScheduleType == ScheduleType.SameDay)
-        {
-            ImmediateSchedule();
-        }
-        else
-        {
-            DelayedSchedule();
-        }
-    }
-    
-    private void ImmediateSchedule()
-    {
-        
-    }
-    
-    private void DelayedSchedule()
-    {
-        
-    }
-    
     
 }

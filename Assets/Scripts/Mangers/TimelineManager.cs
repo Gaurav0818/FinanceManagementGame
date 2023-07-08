@@ -15,7 +15,7 @@ public class TimelineManager : Singleton<TimelineManager>
     }
     
     [System.Serializable]
-    public enum MandatoryScenarioDayType
+    public enum DayTypeInWhichScenarioCanBeUsed
     {
         WeekDay,
         WeekEnd,
@@ -25,7 +25,7 @@ public class TimelineManager : Singleton<TimelineManager>
     [System.Serializable]
     public struct MandatoryScenario
     {
-        public MandatoryScenarioDayType type;
+        public DayTypeInWhichScenarioCanBeUsed type;
         public ScenarioData scenario;
     }
 
@@ -135,7 +135,7 @@ public class TimelineManager : Singleton<TimelineManager>
         m_TimeInHour = m_StartTimeOfDay;
         
         m_CurrentDay.scenarioList.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
-        
+
         m_TimeInHour = m_CurrentDay.scenarioList[0].StartTime;
         
         ScenarioManger.Instance.StartScenario(m_CurrentDay.scenarioList[0]);
@@ -183,15 +183,15 @@ public class TimelineManager : Singleton<TimelineManager>
     private List<ScenarioData> AddMandatoryScenario(DayType type)
     {
         List<ScenarioData> scenarioList = new List<ScenarioData>();
-        MandatoryScenarioDayType dayType;
+        DayTypeInWhichScenarioCanBeUsed canBeUsed;
         if(type == DayType.WeekDay)
-            dayType = MandatoryScenarioDayType.WeekDay;
+            canBeUsed = DayTypeInWhichScenarioCanBeUsed.WeekDay;
         else
-            dayType = MandatoryScenarioDayType.WeekEnd;
+            canBeUsed = DayTypeInWhichScenarioCanBeUsed.WeekEnd;
             
         foreach (var scenario in mandatoryScenario)
         {
-            if (scenario.type == MandatoryScenarioDayType.Both || scenario.type == dayType)
+            if (scenario.type == DayTypeInWhichScenarioCanBeUsed.Both || scenario.type == canBeUsed)
                 scenarioList.Add(scenario.scenario);
         }
         
@@ -202,7 +202,78 @@ public class TimelineManager : Singleton<TimelineManager>
     {
         return m_TimeInHour.ToString("00") + ": " + m_TimeInMin.ToString("00");
     }
+
+    public List<int> GetAllPossibleDays(DayTypeInWhichScenarioCanBeUsed type)
+    {
+        List<int> possibleDays = new List<int>();
+        DayTypeInWhichScenarioCanBeUsed dayType;
+
+        for (int i = m_CurrentDay.dayNumber; i < days.Count; i++)
+        {
+            if(DayType.WeekDay == days[i].typeOfDay)
+                dayType = DayTypeInWhichScenarioCanBeUsed.WeekDay;
+            else
+                dayType = DayTypeInWhichScenarioCanBeUsed.WeekEnd;
+            
+            if (type == DayTypeInWhichScenarioCanBeUsed.Both || type == dayType)
+                possibleDays.Add(days[i].dayNumber);
+        }
+
+        return possibleDays;
+    }
+
+    public List<int> GetFreeTimeOfDay(int dayNumber,int durationOfFreeTime)
+    {
+        DayEntry day = days[dayNumber-1];
+        
+        List<ScenarioData> scenarioList = day.scenarioList;
+
+        List<int> freeTime = new List<int>();
+        
+        for(int i = m_StartTimeOfDay; i < m_EndTimeOfDay; i++)
+        {
+            freeTime.Add(i);
+        }
+        
+        foreach (var scenario in scenarioList)
+        {
+            for (int i = scenario.StartTime; i < scenario.StartTime + (int)scenario.scenario.GetDuration(); i++)
+            {
+                freeTime.Remove(i);
+            }
+        }
+
+        List<int> newFreeTime = new List<int>();
+        
+        for(int i = 0; i< freeTime.Count; i++)
+        {
+            newFreeTime.Add(freeTime[i]);
+        }
+        
+        for(int i = 0; i< freeTime.Count; i++)
+        {
+            for(int j = freeTime[i]; j < freeTime[i] + durationOfFreeTime; j++)
+            {
+                if (!freeTime.Contains(j))
+                {
+                    newFreeTime.Remove(freeTime[i]);
+                    break;
+                }
+            }
+        }
+
+        return newFreeTime;
+    }
     
+    public void AddScenarioToDay(int dayNumber,int time ,Scenario scenario)
+    {
+        ScenarioData scenarioData = new ScenarioData();
+        scenarioData.scenario = scenario;
+        scenarioData.StartTime = time;
+        
+        days[dayNumber-1].scenarioList.Add(scenarioData);
+        m_CurrentDay.scenarioList.Sort((a, b) => a.StartTime.CompareTo(b.StartTime));
+    }
 
     public void MarkScenarioAsDone(ScenarioData scenario)
     {
@@ -217,4 +288,7 @@ public class TimelineManager : Singleton<TimelineManager>
             }
         }
     }
+    
+    
+    
 }

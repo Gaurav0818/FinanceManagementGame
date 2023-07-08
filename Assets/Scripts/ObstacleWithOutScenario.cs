@@ -10,23 +10,14 @@ public class ObstacleWithOutScenario : Obstacle
     {
         get { return ObstacleType.WithoutScenario; }
     }
-    
-    [SerializeField] private int m_CurrencyCost;
-    [SerializeField] private int m_SatisfactionIncreaseBy;
-    [SerializeField] private int m_SatisfactionDecreaseBy;
 
     public override void AnswerQuestion(bool answer)
     {
         if (answer)
-        {
-            ScoreManger.Instance.DecreaseCurrency(m_CurrencyCost);
-            ScoreManger.Instance.AddSatisfactionScore(m_SatisfactionIncreaseBy);
-        }
+            IfAnswerIsTrue();
         else
-        {
-            ScoreManger.Instance.DecreaseSatisfactionScore(-m_SatisfactionIncreaseBy);
-        }
-        
+            IfAnswerIsFalse();
+
         ObstacleManger.Instance.CloseObstacle();
     }
 }
