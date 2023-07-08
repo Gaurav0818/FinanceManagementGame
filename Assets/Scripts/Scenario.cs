@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Scenario", menuName = "ScriptedData/Scenario")]
@@ -24,8 +25,10 @@ public class Scenario : ScriptableObject
     [SerializeField] private float m_Duration;
 
     [SerializeField] private List<Obstacle> m_PossibleObstacles;
+    [SerializeField] public Sprite  m_ScenarioImage;
     
     private Obstacle m_ScenaioObstacle;
+    private bool m_IsDone = false;
     
     public ScenarioType GetScenarioType()
     {
@@ -54,5 +57,15 @@ public class Scenario : ScriptableObject
     public Obstacle GetObstacle()
     {
         return m_ScenaioObstacle;
+    }
+    
+    public void SetScenarioToDone()
+    {
+        m_IsDone = true;
+    }
+    
+    public bool IsScenarioDone()
+    {
+        return m_IsDone;
     }
 }

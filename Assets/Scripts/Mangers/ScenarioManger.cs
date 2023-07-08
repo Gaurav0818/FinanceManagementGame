@@ -18,9 +18,11 @@ public class ScenarioManger : Singleton<ScenarioManger>
     {
         m_CurrentScenario = scenario;
         m_CurrentObstacle = scenario.scenario.GetObstacle();    
+        
+        UiManager.Instance.SetScenarioImage();
     }
     
-    public Scenario GetScenario()
+    public Scenario GetCurrentScenario()
     {
         return m_CurrentScenario.scenario;
     }

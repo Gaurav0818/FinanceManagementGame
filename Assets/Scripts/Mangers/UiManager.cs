@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UiManager : Singleton<UiManager>
 {
+    
     [Header("Calender")]
     [SerializeField] private GameObject m_CalenderGrid;
     [SerializeField] private GameObject m_CalenderDayPrefab;
@@ -13,13 +14,15 @@ public class UiManager : Singleton<UiManager>
     [Header("ScenarioList")]
     [SerializeField] private GameObject m_ScenarioListGrid;
     [SerializeField] private GameObject m_ScenarioListEntryPrefab;
-    
+    private ObjectPool m_ScenarioDayPool;
+    [SerializeField] private Image ScenarioImage;
     
     private void Start()
     {
-        m_CalenderDayPool = new ObjectPool();
+        m_CalenderDayPool = m_CalenderGrid.AddComponent<ObjectPool>();
+        m_ScenarioDayPool = m_ScenarioListGrid.AddComponent<ObjectPool>();
         FillCalender();
-       // FillDailySchedule();
+        FillDailySchedule();
     }
 
     private void FillCalender()
@@ -43,21 +46,36 @@ public class UiManager : Singleton<UiManager>
                 entity.GetComponent<Image>().color = Color.red;
             else
                 entity.GetComponent<Image>().color = Color.white;
+            
         }
     }
     
     
     private void FillDailySchedule()
     {
+        m_ScenarioDayPool.InitializePool(m_ScenarioListEntryPrefab, m_ScenarioListGrid.transform, TimelineManager.Instance.days.Count);
+        
+        RefreshSchedule();
+    }
+    
+    public void RefreshSchedule()
+    {
+        m_ScenarioDayPool.RefreshPool();
+        
         foreach (var scenario in TimelineManager.Instance.GetCurrentDay().scenarioList)
         {
-            GameObject entity = Instantiate(m_ScenarioListEntryPrefab, m_ScenarioListGrid.transform);
+
+            GameObject entity = m_ScenarioDayPool.GetObject();
             TextMeshProUGUI  buttonText = entity.GetComponentInChildren<TextMeshProUGUI >();
             buttonText.text = scenario.StartTime + ":00  -  " + (scenario.StartTime + scenario.scenario.GetDuration()) + ":00   for "  + scenario.scenario.name;
 
-            var localScale = entity.transform.localScale;
-            localScale = new Vector3(localScale.x, localScale.y * scenario.scenario.GetDuration(), localScale.z );
-            entity.transform.localScale = localScale;
+            entity.GetComponent<RectTransform>().sizeDelta *= new Vector2(1, scenario.scenario.GetDuration());
+            
         }
+    }
+
+    public void SetScenarioImage()
+    {
+        ScenarioImage.sprite = ScenarioManger.Instance.GetCurrentScenario().m_ScenarioImage;
     }
 }
