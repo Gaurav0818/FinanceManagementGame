@@ -47,9 +47,10 @@ public class UiManager : Singleton<UiManager>
         EventManager.OnMinuteIncreaseEvent += MinuteIncreaseEvent;
         EventManager.OnHourIncreaseEvent += HourIncreaseEvent;
         EventManager.OnDayIncreaseEvent += DayIncreaseEvent;
+        EventManager.OnStartGameEvent += StartGameEvent;
     }
 
-    private void Start()
+    private void StartGameEvent()
     {
         m_CalenderDayPool = m_CalenderGrid.AddComponent<ObjectPool>();
         m_ScenarioDayPool = m_ScenarioListGrid.AddComponent<ObjectPool>();

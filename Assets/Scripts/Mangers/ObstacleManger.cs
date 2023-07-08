@@ -20,8 +20,14 @@ public class ObstacleManger : Singleton<ObstacleManger>
     private void Awake()
     {
         EventManager.OnMinuteIncreaseEvent += MinuteIncreaseEvent;
+        EventManager.OnStartGameEvent += StartGameEvent;
     }
 
+    private void StartGameEvent()
+    {
+        
+    }
+    
     public void SetCurrentObstacle(Obstacle obstacle)
     {
         m_CurrentObstacle = obstacle;

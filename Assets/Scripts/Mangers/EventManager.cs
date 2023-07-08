@@ -11,6 +11,9 @@ public class EventManager : Singleton<EventManager>
     public delegate void DayIncreaseEvent();
     public static event DayIncreaseEvent OnDayIncreaseEvent;
     
+    public delegate void StartGameEvent();
+    public static event StartGameEvent OnStartGameEvent;
+    
     
     public static void TriggerHourIncreaseEvent()
     {
@@ -35,11 +38,20 @@ public class EventManager : Singleton<EventManager>
         else
             Debug.LogWarning("No subscribers for DayIncrease event");
     }
+    
+    public static void TriggerStartGameEvent()
+    {
+        if (OnStartGameEvent != null)
+            OnStartGameEvent();
+        else
+            Debug.LogWarning("No subscribers for StartGame event");
+    }
 
     private void OnDisable()
     {
         OnHourIncreaseEvent = null;
         OnMinuteIncreaseEvent = null;
         OnDayIncreaseEvent = null;
+        OnStartGameEvent = null;
     }
 }

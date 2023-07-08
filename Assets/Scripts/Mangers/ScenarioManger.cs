@@ -8,12 +8,17 @@ public class ScenarioManger : Singleton<ScenarioManger>
 {
     private TimelineManager.ScenarioData m_CurrentScenario;
 
-
     private void Awake()
     {
         EventManager.OnHourIncreaseEvent += HourIncreaseEvent;
+        EventManager.OnStartGameEvent += StartGameEvent;
     }
 
+    private void StartGameEvent()
+    {
+        
+    }
+    
     public void StartScenario(TimelineManager.ScenarioData scenario)
     {
         m_CurrentScenario = scenario;

@@ -65,7 +65,13 @@ public class TimelineManager : Singleton<TimelineManager>
     [SerializeField] private int m_EndTimeOfDay = 20;
     [SerializeField] private int m_MinInEachHr = 60;
     
+    
     private void Awake()
+    {
+        EventManager.OnStartGameEvent += StartGameEvent;
+    }
+    
+    public void StartGameEvent()
     {
         if(gameMode == GameMode.WeekBased)
             InitializeDays(7);
