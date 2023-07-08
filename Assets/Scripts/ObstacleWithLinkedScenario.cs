@@ -30,6 +30,7 @@ public class ObstacleWithLinkedScenario : Obstacle
     
     public override void AnswerQuestion(bool answer)
     {
+        ObstacleManger.Instance.CloseObstacle();
         if (answer)
         {
             ObstacleManger.Instance.NeedToScheduleScenario(m_LinkedScenario, m_ScenarioType);
@@ -38,7 +39,6 @@ public class ObstacleWithLinkedScenario : Obstacle
         else
         {
             IfAnswerIsFalse();
-            ObstacleManger.Instance.CloseObstacle();
         }
     }
     

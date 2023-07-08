@@ -2,6 +2,7 @@ using System;
 using System.Net.Mime;
 using System.Xml;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +58,9 @@ public class UiManager : Singleton<UiManager>
 
         FillCalender();
         FillDailySchedule();
+        FillDaySelection();
+        FillTimeSelection();
+        
         RefreshClock();
         RefreshDayIndicator();
         
@@ -110,7 +114,7 @@ public class UiManager : Singleton<UiManager>
 
     public void FillTimeSelection()
     {
-        m_TimeSelectionPool.InitializePool(m_TimeSelectionPrefab, m_TimeSelectionGrid.transform, TimelineManager.Instance.days.Count);
+        m_TimeSelectionPool.InitializePool(m_TimeSelectionPrefab, m_TimeSelectionGrid.transform, 24);
         
         RefreshTimeSelection();
     }
@@ -167,6 +171,7 @@ public class UiManager : Singleton<UiManager>
             GameObject entity = m_DaySelectionPool.GetObject();
             TextMeshProUGUI  buttonText = entity.GetComponentInChildren<TextMeshProUGUI >();
             buttonText.text = day.ToString();
+            entity.GetComponent<DateEntry>().number = day;
             
             entity.GetComponent<Image>().color = Color.white;
         }
@@ -181,6 +186,7 @@ public class UiManager : Singleton<UiManager>
             GameObject entity = m_TimeSelectionPool.GetObject();
             TextMeshProUGUI  buttonText = entity.GetComponentInChildren<TextMeshProUGUI >();
             buttonText.text = timeSlot.ToString();
+            entity.GetComponent<TimeEntry>().number = timeSlot;
             
             entity.GetComponent<Image>().color = Color.white;
         }
@@ -225,6 +231,7 @@ public class UiManager : Singleton<UiManager>
     
     public void OpenDaySchedulePanel()
     {
+        RefreshDaySelection();
         m_DaySelectionPanel.SetActive(true);
     }
     
@@ -237,6 +244,7 @@ public class UiManager : Singleton<UiManager>
     
     public void OpenTimeSchedulePanel()
     {
+        RefreshTimeSelection();
         m_TimeSelectionPanel.SetActive(true);
     }
     
@@ -255,6 +263,7 @@ public class UiManager : Singleton<UiManager>
     public void SelectedTimeSchedule(int time)
     {
         CloseTimeSchedulePanel();
+        RefreshSchedule();
         ObstacleManger.Instance.SelectedTimeSchedule(time);
     }
 }

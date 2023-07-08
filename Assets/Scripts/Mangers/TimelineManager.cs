@@ -208,7 +208,7 @@ public class TimelineManager : Singleton<TimelineManager>
         List<int> possibleDays = new List<int>();
         DayTypeInWhichScenarioCanBeUsed dayType;
 
-        for (int i = m_CurrentDay.dayNumber; i < days.Count; i++)
+        for (int i = m_CurrentDay.dayNumber-1; i < days.Count; i++)
         {
             if(DayType.WeekDay == days[i].typeOfDay)
                 dayType = DayTypeInWhichScenarioCanBeUsed.WeekDay;

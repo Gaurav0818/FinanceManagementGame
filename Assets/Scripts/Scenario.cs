@@ -30,6 +30,9 @@ public class Scenario : ScriptableObject
     
     public void GenerateRandomObstacle()
     {
+        if(m_PossibleObstacles.Count == 0)
+            return;
+        
         if (Random.Range(0, 100) < 100)
             m_ScenaioObstacle =  m_PossibleObstacles[Random.Range(0, m_PossibleObstacles.Count)];
         else
