@@ -38,18 +38,14 @@ public class Scenario : ScriptableObject
     {
         return m_Duration;
     }
+    
 
-    private void Awake()
+    public void GenerateRandomObstacle()
     {
-        if (Random.Range(0, 100) < 50)
-            m_ScenaioObstacle = GetRandomObstacle();
+        if (Random.Range(0, 100) < 100)
+            m_ScenaioObstacle =  m_PossibleObstacles[Random.Range(0, m_PossibleObstacles.Count)];
         else
             m_ScenaioObstacle = null;
-    }
-
-    private Obstacle GetRandomObstacle()
-    {
-        return m_PossibleObstacles[Random.Range(0, m_PossibleObstacles.Count)];
     }
     
     public Obstacle GetObstacle()

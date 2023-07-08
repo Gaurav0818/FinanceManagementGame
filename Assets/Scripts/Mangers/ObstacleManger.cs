@@ -34,7 +34,8 @@ public class ObstacleManger : Singleton<ObstacleManger>
 
     private void StartObstacle()
     {
-        UiManager.Instance.OpenObstacle(m_CurrentObstacle);
+        if(m_CurrentObstacle)
+            UiManager.Instance.OpenObstacle(m_CurrentObstacle);
     }
     
     public void CloseObstacle()

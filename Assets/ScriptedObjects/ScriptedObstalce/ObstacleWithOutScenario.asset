@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b5e92ae2eca7543bee85befcde6d9d, type: 3}
   m_Name: ObstacleWithOutScenario
   m_EditorClassIdentifier: 
-  m_Question: 
-  m_CurrencyCost: 0
-  m_SatisfactionCost: 0
+  m_Question: 'Not in a mood eat make Breakfast, Order online '
+  m_AnswerTrue: True
+  m_AnswerFalse: False
+  m_CurrencyCost: 10
+  m_SatisfactionIncreaseBy: 10
+  m_SatisfactionDecreaseBy: 5

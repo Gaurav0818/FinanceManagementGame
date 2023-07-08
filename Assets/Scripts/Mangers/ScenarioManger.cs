@@ -17,6 +17,7 @@ public class ScenarioManger : Singleton<ScenarioManger>
     public void StartScenario(TimelineManager.ScenarioData scenario)
     {
         m_CurrentScenario = scenario;
+        scenario.scenario.GenerateRandomObstacle();
         ObstacleManger.Instance.SetCurrentObstacle(scenario.scenario.GetObstacle());    
         
         UiManager.Instance.SetScenarioImage();

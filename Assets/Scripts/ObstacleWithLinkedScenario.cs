@@ -10,8 +10,8 @@ public class ObstacleWithLinkedScenario : Obstacle
     [System.Serializable]
     public enum ScheduleType
     {
-        Immediate,              // just after current scenario ends
-        Delayed                 // after some time
+        SameDay,             
+        AnotherDay               
     }
     
     public override ObstacleType Type
@@ -37,7 +37,7 @@ public class ObstacleWithLinkedScenario : Obstacle
     
     private void IfAnswerIsTrue()
     {
-        if (m_ScheduleType == ScheduleType.Immediate)
+        if (m_ScheduleType == ScheduleType.SameDay)
         {
             ImmediateSchedule();
         }
