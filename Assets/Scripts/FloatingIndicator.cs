@@ -10,15 +10,21 @@ public class FloatingIndicator : MonoBehaviour
     public float duration = 2f;     
 
     public TextMeshProUGUI textComponent;
+    private RectTransform re;
+    
+    private Vector2 startPosition;
 
     private void Awake()
     {
+        re = textComponent.GetComponent<RectTransform>();
+        startPosition = re.anchoredPosition;
+        
         textComponent.gameObject.SetActive(false);
     }
 
-    public void ShowFloatingText(string text, Vector3 startPosition, Color color)
+    public void ShowFloatingText(string text, Color color)
     {
-        transform.position = startPosition;
+        re.anchoredPosition = startPosition;
         textComponent.text = text;
         textComponent.color = color;
         
@@ -32,9 +38,7 @@ public class FloatingIndicator : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            RectTransform re = textComponent.GetComponent<RectTransform>();
-            Vector2 newPosition = re.position + Vector3.forward * floatSpeed * Time.deltaTime;
-            transform.position = newPosition;
+            re.anchoredPosition += new Vector2(0, 50 * floatSpeed * Time.deltaTime);
 
             elapsedTime += Time.deltaTime;
 

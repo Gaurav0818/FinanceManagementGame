@@ -11,7 +11,8 @@ public class UiManager : Singleton<UiManager>
     [Header("Currency And Satisfaction score")] 
     [SerializeField] private TextMeshProUGUI m_CurrencyAmountTextUI;
     [SerializeField] private TextMeshProUGUI m_SatisfactionScoreTextUI;
-    [SerializeField] private FloatingIndicator m_FloatingIndicator;
+    [SerializeField] private FloatingIndicator m_FloatingIndicatorCurrency;
+    [SerializeField] private FloatingIndicator m_FloatingIndicatorSatisfactionScore;
     
     [Header("Day and Time")]
     [SerializeField] private TextMeshProUGUI m_ClockTextUI;
@@ -286,11 +287,11 @@ public class UiManager : Singleton<UiManager>
     
     public void FloatingUIForCurrency(string text, Color color)
     {
-        m_FloatingIndicator.ShowFloatingText(text, m_CurrencyAmountTextUI.transform.position,color);
+        m_FloatingIndicatorCurrency.ShowFloatingText(text, color);
     }
     
     public void FloatingUIForSatisfactionScore(string text, Color color)
     {
-        m_FloatingIndicator.ShowFloatingText(text, m_SatisfactionScoreTextUI.transform.position,color);
+        m_FloatingIndicatorSatisfactionScore.ShowFloatingText(text, color);
     }
 }
