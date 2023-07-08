@@ -34,6 +34,7 @@ public class TimelineManager : Singleton<TimelineManager>
     {
         public Scenario scenario;
         public int StartTime;
+        public bool isDone;
     }
 
     [System.Serializable]
@@ -115,16 +116,16 @@ public class TimelineManager : Singleton<TimelineManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(m_MinInEachHr/60f);
             m_TimeInMin++;
-            if (m_TimeInMin >= m_MinInEachHr)
+            EventManager.TriggerMinuteIncreaseEvent();
+            if (m_TimeInMin >= 60)
             {
                 m_TimeInMin = 0;
                 m_TimeInHour++;
                 HourChanged();
             }
         }
-        yield return null;
     }
 
     private void StartDay()
@@ -140,12 +141,13 @@ public class TimelineManager : Singleton<TimelineManager>
         
     }
     
-    private void StartNextDay()
+    public void StartNextDay()
     {
         int index = days.IndexOf(m_CurrentDay);
         if (index + 1 < days.Count)
         {
             SetCurrentDay(days[index + 1]);
+            EventManager.TriggerDayIncreaseEvent();
             StartDay();
         }
     }
@@ -186,8 +188,27 @@ public class TimelineManager : Singleton<TimelineManager>
             if (scenario.type == MandatoryScenarioDayType.Both || scenario.type == dayType)
                 scenarioList.Add(scenario.scenario);
         }
-
+        
         return scenarioList;
     }
+
+    public string GetCurrentTimeInString()
+    {
+        return m_TimeInHour.ToString("00") + ": " + m_TimeInMin.ToString("00");
+    }
     
+
+    public void MarkScenarioAsDone(ScenarioData scenario)
+    {
+        for (int i = 0; i < m_CurrentDay.scenarioList.Count; i++)
+        {
+            if (m_CurrentDay.scenarioList[i].StartTime == scenario.StartTime)
+            {
+                ScenarioData modifiedEntity = m_CurrentDay.scenarioList[i];
+                modifiedEntity.isDone = true;
+                m_CurrentDay.scenarioList[i] = modifiedEntity;
+                break; 
+            }
+        }
+    }
 }

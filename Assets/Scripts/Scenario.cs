@@ -28,8 +28,7 @@ public class Scenario : ScriptableObject
     [SerializeField] public Sprite  m_ScenarioImage;
     
     private Obstacle m_ScenaioObstacle;
-    private bool m_IsDone = false;
-    
+
     public ScenarioType GetScenarioType()
     {
         return m_ScenarioType;
@@ -46,7 +45,6 @@ public class Scenario : ScriptableObject
             m_ScenaioObstacle = GetRandomObstacle();
         else
             m_ScenaioObstacle = null;
-        
     }
 
     private Obstacle GetRandomObstacle()
@@ -59,13 +57,4 @@ public class Scenario : ScriptableObject
         return m_ScenaioObstacle;
     }
     
-    public void SetScenarioToDone()
-    {
-        m_IsDone = true;
-    }
-    
-    public bool IsScenarioDone()
-    {
-        return m_IsDone;
-    }
 }

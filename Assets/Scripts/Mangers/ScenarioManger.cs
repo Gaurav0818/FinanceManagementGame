@@ -38,14 +38,18 @@ public class ScenarioManger : Singleton<ScenarioManger>
         }
         else
         {
-            TimelineManager.Instance.SkipHour();
+            TimelineManager.Instance.StartNextDay();
         }
     }
 
     private void HourIncreaseEvent()
     {
-        if( m_CurrentScenario.StartTime + m_CurrentScenario.scenario.GetDuration() >= TimelineManager.Instance.GetCurrentTimeInHr())
+        if (m_CurrentScenario.StartTime + m_CurrentScenario.scenario.GetDuration() >=
+            TimelineManager.Instance.GetCurrentTimeInHr())
+        {
+            //TimelineManager.Instance.MarkScenarioAsDone(m_CurrentScenario);
             StartNextScenario();
+        }
     }
     
 }
