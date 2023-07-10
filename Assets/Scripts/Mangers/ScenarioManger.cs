@@ -58,9 +58,8 @@ public class ScenarioManger : Singleton<ScenarioManger>
         }
         else
         {
-            m_CurrentScenario.scenario.GenerateRandomObstacle();
+            StartScenario(m_CurrentScenario);
         }
-        
     }
     
     
