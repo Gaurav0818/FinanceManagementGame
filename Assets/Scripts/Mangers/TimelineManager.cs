@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class TimelineManager : Singleton<TimelineManager>
 {
+#region - Variables / Properties -
+
     [System.Serializable]
     public enum DayType
     {
@@ -30,7 +33,7 @@ public class TimelineManager : Singleton<TimelineManager>
     }
 
     [System.Serializable]
-     public struct ScenarioData
+    public struct ScenarioData
     {
         public Scenario scenario;
         public int StartTime;
@@ -64,8 +67,15 @@ public class TimelineManager : Singleton<TimelineManager>
     [SerializeField] private int m_StartTimeOfDay = 8;
     [SerializeField] private int m_EndTimeOfDay = 20;
     [SerializeField] private int m_MinInEachHr = 60;
+
+
+    private bool m_IsPaused = false;
+    private float m_TimeScale = 1;
+    private List<float> m_PossibleTimeScale = new List<float> {1f/4f,1f/3f,1f/2f, 1f, 2f, 3f ,4f};
+
+#endregion
     
-    
+
     private void Awake()
     {
         EventManager.OnStartGameEvent += StartGameEvent;
@@ -122,7 +132,11 @@ public class TimelineManager : Singleton<TimelineManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(m_MinInEachHr/60f);
+            yield return new WaitForSeconds( (m_MinInEachHr/ m_TimeScale) /60f);
+            
+            if(m_IsPaused)
+                continue;
+            
             m_TimeInMin++;
             EventManager.TriggerMinuteIncreaseEvent();
 
@@ -295,6 +309,48 @@ public class TimelineManager : Singleton<TimelineManager>
         }
     }
     
+#region - TimeScale -
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            DecrementTimeScale();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            IncrementTimeScale();
+        }
+    }
+
+    private void IncrementTimeScale()
+    {
+        int index = m_PossibleTimeScale.IndexOf(m_TimeScale);
+        if (index < m_PossibleTimeScale.Count - 1)
+        {
+            m_TimeScale = m_PossibleTimeScale[index + 1];
+        }
+    }
+
+    private void DecrementTimeScale()
+    {
+        int index = m_PossibleTimeScale.IndexOf(m_TimeScale);
+        if (index > 0)
+        {
+            m_TimeScale = m_PossibleTimeScale[index - 1];
+        }
+    }
+
+    private void PauseTimeScale()
+    {
+        m_IsPaused = true;
+    }
     
-    
+    private void ResumeTimeScale()
+    {
+        m_IsPaused = false;
+    }
+
+#endregion
+
 }
