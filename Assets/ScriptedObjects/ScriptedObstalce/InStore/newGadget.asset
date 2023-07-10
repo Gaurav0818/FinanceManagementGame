@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b5e92ae2eca7543bee85befcde6d9d, type: 3}
+  m_Name: newGadget
+  m_EditorClassIdentifier: 
+  m_Question: You spot a display of new gadgets that catch your eye. Buy the latest
+    gadget?
+  m_AnswerTrue: Purchase the latest gadget.
+  m_AnswerFalse: Resist the urge and stick with your current gadgets.
+  m_CurrencyCost: 100
+  m_SatisfactionIncreaseBy: 20
+  m_SatisfactionDecreaseBy: 5

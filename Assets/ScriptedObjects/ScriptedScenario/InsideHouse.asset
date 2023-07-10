@@ -15,6 +15,12 @@ MonoBehaviour:
   m_ScenarioName: House
   m_Duration: 2
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: a4acc351e40136c428f30b37119b1272, type: 2}
   - {fileID: 11400000, guid: faff7defd6a286840b0cb9f3047e6c3b, type: 2}
+  - {fileID: 11400000, guid: a4acc351e40136c428f30b37119b1272, type: 2}
+  - {fileID: 11400000, guid: 9b90d6550b237db46b8b00260bea52bf, type: 2}
+  - {fileID: 11400000, guid: acf4b914fc523f34d87cc407c99f6243, type: 2}
+  - {fileID: 11400000, guid: b91ef60f3e57da94daaa6134e4fd5f7a, type: 2}
+  - {fileID: 11400000, guid: 2c71970b6ed9b6949948a08f30739192, type: 2}
+  - {fileID: 11400000, guid: 532bb13edbbb9444ea8d62b1ec6fb90e, type: 2}
+  - {fileID: 11400000, guid: 69f569c767db4224fa1e0ae48e5d9ad4, type: 2}
   m_ScenarioImage: {fileID: 21300000, guid: 86c563eec8afae04586a62fb5d9833b8, type: 3}

@@ -277,12 +277,12 @@ public class UiManager : Singleton<UiManager>
     
     public void RefreshCurrencyAmount()
     {
-        m_CurrencyAmountTextUI.text = "Currency :" + ScoreManger.Instance.GetCurrency().ToString();
+        m_CurrencyAmountTextUI.text = "Currency :" + ScoreManger.Instance.GetCurrency().ToString("0000");
     }
     
     public void RefreshSatisfactionScore()
     {
-        m_SatisfactionScoreTextUI.text = "SatisfactionScore :" + ScoreManger.Instance.GetSatisfactionScore().ToString();
+        m_SatisfactionScoreTextUI.text = "SatisfactionScore :" + ScoreManger.Instance.GetSatisfactionScore().ToString("000");
     }
     
     public void FloatingUIForCurrency(string text, Color color)

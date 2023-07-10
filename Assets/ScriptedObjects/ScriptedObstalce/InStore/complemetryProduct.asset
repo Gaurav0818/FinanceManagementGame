@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b5e92ae2eca7543bee85befcde6d9d, type: 3}
+  m_Name: complemetryProduct
+  m_EditorClassIdentifier: 
+  m_Question: A store employee recommends a complementary product to enhance your
+    purchase. Buy the additional product?
+  m_AnswerTrue: Purchase the recommended complementary product.
+  m_AnswerFalse: Opt not to buy the additional product and stick with your initial
+    purchase.
+  m_CurrencyCost: 20
+  m_SatisfactionIncreaseBy: 5
+  m_SatisfactionDecreaseBy: 5

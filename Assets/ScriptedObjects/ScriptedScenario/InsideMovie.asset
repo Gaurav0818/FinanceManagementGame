@@ -15,6 +15,10 @@ MonoBehaviour:
   m_ScenarioName: Movie
   m_Duration: 2
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: f0b0c85de6a852d4c8f27c5d89071838, type: 2}
-  - {fileID: 11400000, guid: d3e378e1b4d18b948902c1e8317003e4, type: 2}
+  - {fileID: 11400000, guid: 84598ff649a010d4fb648069f44a2f0b, type: 2}
+  - {fileID: 11400000, guid: 8ebe5c81e714b264f8523da8181c6fe3, type: 2}
+  - {fileID: 11400000, guid: 224420c5ad92087408c36c9ddae66fbc, type: 2}
+  - {fileID: 11400000, guid: cd10abc1692f8aa489e310e0f49429b8, type: 2}
+  - {fileID: 11400000, guid: 56eada44d8b51c248884f54a688fd3f7, type: 2}
+  - {fileID: 11400000, guid: bdb0a97f5439fba428c8bbcc1df1b3d4, type: 2}
   m_ScenarioImage: {fileID: 21300000, guid: 4355dccb994283940b26950ca2f6fb32, type: 3}

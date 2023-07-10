@@ -91,6 +91,7 @@ public class ObstacleManger : Singleton<ObstacleManger>
 
     public void NeedToScheduleScenario(Scenario scenario, TimelineManager.DayTypeInWhichScenarioCanBeUsed scenarioType)
     {
+        TimelineManager.Instance.PauseTimeScale();
         m_LinkedScenarioType = scenarioType;
         m_LinkedScenario = scenario;
         possibleDays =  TimelineManager.Instance.GetAllPossibleDays(m_LinkedScenarioType);
@@ -107,7 +108,7 @@ public class ObstacleManger : Singleton<ObstacleManger>
     public void SelectedTimeSchedule(int time)
     {
         TimelineManager.Instance.AddScenarioToDay(seletedDay ,time, m_LinkedScenario);
-        
+        UiManager.Instance.RefreshSchedule();
+        TimelineManager.Instance.ResumeTimeScale();
     }
-
 }

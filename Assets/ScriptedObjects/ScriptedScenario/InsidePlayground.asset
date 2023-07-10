@@ -15,6 +15,8 @@ MonoBehaviour:
   m_ScenarioName: Playground
   m_Duration: 1
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: ca6f3d4c423d6c04f81d618c0cf5ff02, type: 2}
-  - {fileID: 11400000, guid: ca6f3d4c423d6c04f81d618c0cf5ff02, type: 2}
+  - {fileID: 11400000, guid: fca4bfbae2835a6469f033cd0f611bce, type: 2}
+  - {fileID: 11400000, guid: 01fa7c47833271f48b44d1e9329b057f, type: 2}
+  - {fileID: 11400000, guid: 18359e97ab6293d4c863ba4075e17bf0, type: 2}
+  - {fileID: 11400000, guid: 8a69fb391427cfc4594392703e0194dd, type: 2}
   m_ScenarioImage: {fileID: 21300000, guid: 7e43a4f3599472b40affc5522f348bc7, type: 3}

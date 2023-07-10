@@ -15,6 +15,10 @@ MonoBehaviour:
   m_ScenarioName: Store
   m_Duration: 1
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: faff7defd6a286840b0cb9f3047e6c3b, type: 2}
-  - {fileID: 11400000, guid: d3e378e1b4d18b948902c1e8317003e4, type: 2}
+  - {fileID: 11400000, guid: f0abc769f6a8a424a9ed0cd2b731cfe4, type: 2}
+  - {fileID: 11400000, guid: f564e7f585ff3554dab1d79f2a0ffc02, type: 2}
+  - {fileID: 11400000, guid: 094a9787cb2ef6a41b6955b26367c338, type: 2}
+  - {fileID: 11400000, guid: b3af0e0a66a05af47b097f9567d155b8, type: 2}
+  - {fileID: 11400000, guid: e40f97a61ec51f04187c4014076b25ae, type: 2}
+  - {fileID: 11400000, guid: 63cd0effb73fe12458f1328a25f4c426, type: 2}
   m_ScenarioImage: {fileID: 21300000, guid: 42359b3c69edc954885811991e1c1808, type: 3}

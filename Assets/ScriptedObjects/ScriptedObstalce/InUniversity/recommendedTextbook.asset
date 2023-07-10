@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b5e92ae2eca7543bee85befcde6d9d, type: 3}
+  m_Name: recommendedTextbook
+  m_EditorClassIdentifier: 
+  m_Question: Your professor recommends purchasing a specific textbook for a course.
+    Buy the textbook?
+  m_AnswerTrue: Purchase the recommended textbook.
+  m_AnswerFalse: Explore alternative options like borrowing from the library or finding
+    free online resources.
+  m_CurrencyCost: 20
+  m_SatisfactionIncreaseBy: 10
+  m_SatisfactionDecreaseBy: 5

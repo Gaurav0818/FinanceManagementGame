@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b5e92ae2eca7543bee85befcde6d9d, type: 3}
+  m_Name: premiumSeats
+  m_EditorClassIdentifier: 
+  m_Question: The cinema is promoting a VIP experience with premium seating and perks.
+    Upgrade your ticket for a higher price?
+  m_AnswerTrue: Pay for the VIP ticket upgrade.
+  m_AnswerFalse: Stick with the regular ticket and enjoy the movie without the added
+    perks.
+  m_CurrencyCost: 100
+  m_SatisfactionIncreaseBy: 20
+  m_SatisfactionDecreaseBy: 10

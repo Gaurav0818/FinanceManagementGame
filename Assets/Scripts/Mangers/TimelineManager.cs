@@ -311,19 +311,7 @@ public class TimelineManager : Singleton<TimelineManager>
     
 #region - TimeScale -
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            DecrementTimeScale();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            IncrementTimeScale();
-        }
-    }
-
-    private void IncrementTimeScale()
+    public void IncrementTimeScale()
     {
         int index = m_PossibleTimeScale.IndexOf(m_TimeScale);
         if (index < m_PossibleTimeScale.Count - 1)
@@ -332,7 +320,7 @@ public class TimelineManager : Singleton<TimelineManager>
         }
     }
 
-    private void DecrementTimeScale()
+    public void DecrementTimeScale()
     {
         int index = m_PossibleTimeScale.IndexOf(m_TimeScale);
         if (index > 0)
@@ -341,14 +329,18 @@ public class TimelineManager : Singleton<TimelineManager>
         }
     }
 
-    private void PauseTimeScale()
+    public void PauseTimeScale()
     {
         m_IsPaused = true;
     }
     
-    private void ResumeTimeScale()
+    public void ResumeTimeScale()
     {
         m_IsPaused = false;
+    }
+    public float GetCurrentTimeScale()
+    {
+        return m_TimeScale;
     }
 
 #endregion

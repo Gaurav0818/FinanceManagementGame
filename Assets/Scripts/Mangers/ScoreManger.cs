@@ -19,14 +19,14 @@ public class ScoreManger : Singleton<ScoreManger>
     {
         m_CurrencyAmount += score;
         UiManager.Instance.RefreshCurrencyAmount();
-        UiManager.Instance.FloatingUIForCurrency(score.ToString(), Color.green);
+        UiManager.Instance.FloatingUIForCurrency("+"+score.ToString(), Color.green);
     }
     
     public void DecreaseCurrency(int score)
     {
         m_CurrencyAmount -= score;
         UiManager.Instance.RefreshCurrencyAmount();
-        UiManager.Instance.FloatingUIForCurrency(score.ToString(), Color.red);
+        UiManager.Instance.FloatingUIForCurrency("-"+score.ToString(), Color.red);
     }
 
     #endregion
@@ -44,7 +44,7 @@ public class ScoreManger : Singleton<ScoreManger>
     {
         m_SatisfactionScore += score;
         UiManager.Instance.RefreshSatisfactionScore();
-        UiManager.Instance.FloatingUIForSatisfactionScore(score.ToString(), Color.green);
+        UiManager.Instance.FloatingUIForSatisfactionScore("+"+score.ToString(), Color.green);
 
     }
     
@@ -52,7 +52,7 @@ public class ScoreManger : Singleton<ScoreManger>
     {
         m_SatisfactionScore -= score;
         UiManager.Instance.RefreshSatisfactionScore();
-        UiManager.Instance.FloatingUIForSatisfactionScore(score.ToString(), Color.red);
+        UiManager.Instance.FloatingUIForSatisfactionScore("-"+score.ToString(), Color.red);
     }
     
     #endregion

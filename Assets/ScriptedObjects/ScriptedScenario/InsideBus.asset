@@ -15,5 +15,12 @@ MonoBehaviour:
   m_ScenarioName: Bus
   m_Duration: 1
   m_PossibleObstacles:
-  - {fileID: 11400000, guid: d3e378e1b4d18b948902c1e8317003e4, type: 2}
+  - {fileID: 11400000, guid: 5cbf6f10727c6d54cbf14efebbbf8290, type: 2}
+  - {fileID: 11400000, guid: 8a751b9fc76065d468b28ee177555e38, type: 2}
+  - {fileID: 11400000, guid: f45accd2acd25314485b61469887ce4a, type: 2}
+  - {fileID: 11400000, guid: 1ef66fee176028f4f83007cd09fe7218, type: 2}
+  - {fileID: 11400000, guid: b3581a46bc09dc641a06defe3f5d84ee, type: 2}
+  - {fileID: 11400000, guid: 7f4423ffd20a51246afd8ce74be96675, type: 2}
+  - {fileID: 11400000, guid: cb75d3ada5d8b5942bfa78e1347de4d8, type: 2}
+  - {fileID: 11400000, guid: 7c8db6b6b56e39f4cbf4338814e62145, type: 2}
   m_ScenarioImage: {fileID: 21300000, guid: 04e41c2f820b5474587919fd22f9d3f2, type: 3}
